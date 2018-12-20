@@ -1,0 +1,127 @@
+// detail media queries
+$breakpoints: (
+  'pc' : 'screen and (min-width: 769px)',
+  'tb' : 'screen and (max-width: 768px)',
+  'sp' : 'screen and (max-width: 480px)',
+) !default;
+
+@mixin mq($breakpoint: null) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+//content layout
+$wview : 1080px;
+@mixin grid-wrap() {
+  margin: auto;
+  max-width: $wview;
+}
+
+//pseudo classes mixin
+@mixin first($num) {
+//@include first(3)
+//■ ■ ■　□　□　□
+@if $num == 1 {
+  &:first-child {
+    @content;
+  }
+} @else {
+  &:nth-child(-n + #{$num}) {
+    @content;
+  }
+}
+}
+@mixin nth-of-type($num) {
+  //@include nth-of-type(2)
+  //□　■ □　□　□　□
+  &:nth-of-type(#{$num}) {
+    @content;
+  }
+}
+@mixin last($num) {
+  //@include last(3)
+  //□　□　□ ■ ■ ■
+  &:nth-last-child(-n + #{$num}) {
+    @content;
+  }
+}
+@mixin from-end($num) {
+//@include from-end(3)
+//□　□　□ ■ □　□
+  &:nth-last-child(#{$num}) {
+    @content;
+  }
+}
+@mixin between($first, $last) {
+//@include between(2,4)
+//□　■　■ ■ □　□
+  &:nth-child(n + #{$first}):nth-child(-n + #{$last}) {
+    @content;
+  }
+}
+@mixin all-but($num) {
+//@include all-but(2)
+  //■ □ ■ ■　■ ■
+  &:not(:nth-child(#{$num})) {
+    @content;
+  }
+}
+@mixin each($num) {
+//@include each(2)
+//□ ■ □ ■　□ ■
+  &:nth-child(#{$num}n) {
+    @content;
+  }
+}
+@mixin from-first-last($num) {
+//@include from-first-last(2)
+//□ ■ □ □ ■ □
+  &:nth-child(#{$num}),
+  &:nth-last-child(#{$num}) {
+    @content;
+  }
+}
+@mixin middle($num) {
+//@include middle(7)
+//□ □ □ ■ □ □ □
+  &:nth-child(#{round($num / 2)}) {
+    @content;
+  }
+}
+@mixin first-child() {
+//@include first-child()
+//■ □ □ □ □ □
+  &:first-of-type {
+    @content;
+  }
+}
+@mixin last-child() {
+//@include last-child();
+//□ □ □ □ □ ■
+  &:last-of-type {
+    @content;
+  }
+}
+@mixin even() {
+//@include even();
+//□ ■ □ ■ □ ■
+  &:nth-child(even) {
+    @content;
+  }
+}
+@mixin odd() {
+//@include odd();
+//■ □ ■ □ ■ □
+  &:nth-child(odd) {
+    @content;
+  }
+}
+@mixin first-last() {
+//@include first-last();
+//■ □ □ □ □ ■
+  &:first-child,
+  &:last-child {
+    @content;
+  }
+}

@@ -1,0 +1,185 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:600");
+@import "../flexgridrwd/library/valiables-mixin";
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  background: #fff;
+  color: #333;
+  font: 14px/1 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font: 600 22px/1 'Open Sans', sans-serif;
+  color: #545454;
+}
+
+h2 {
+  font: 600 20px/1 'Open Sans', sans-serif;
+  color: #888;
+  margin: 20px 0;
+}
+
+h3 {
+	font: 600 15px/1 'Open Sans', sans-serif;
+	color: #999;
+	margin: 20px 0;
+}
+
+p {
+  font: 14px/1.4 'Open Sans', sans-serif;
+  color: #777;
+}
+
+a {
+	color: #5f6a7d;
+	text-decoration: none;
+}
+
+@include mq(pc) {
+  .removal-pc {
+    display: none !important;
+  }
+}
+@include mq(tb) {
+  .removal-tb {
+    display: none !important;
+  }
+}
+@include mq(sp) {
+  .removal-sp {
+    display: none !important;
+  }
+}
+
+
+/*demo layout
+**********************************/
+#wrapper {
+  margin: auto;
+  padding: 0 1rem;
+}
+
+article {
+  margin-bottom: 2rem;
+  @include last-child() {
+    margin-bottom: 0;
+  }
+}
+
+.section-end {
+  margin-bottom: 3rem;
+}
+
+.prologue {
+  margin: 4rem auto 5rem;
+  article {
+    @include grid-wrap();
+    position: relative;
+    &:after {
+      background: url(http://uznetro.net/app/themes/pf_typo_ver2.0_skew/img/logo-u.svg) no-repeat;
+      content: "";
+      height: 200px; width: 200px;
+      opacity: 0.75;
+      position: absolute;
+      top: 0; right: 8%;
+      z-index: 0;
+      @include mq(sp) {
+        opacity: 0.5;
+      }
+    }
+  }
+}
+.heading {
+  @include grid-wrap();
+  margin-bottom: 3rem;
+  position: relative;
+  &:after {
+    content: "";
+    background: #ccc;
+    height: 1px; width: 30%;
+    position: absolute;
+    top: 50%;
+  }
+}
+
+[data-content*="row"] {
+  background-color: #e1e1e1;
+  border-radius: 5px;
+  > [data-grid*="col"] {
+    > * {
+      background: #fff;
+      border-radius: 3px;
+      box-shadow: 0 3px 2px rgba(0,0,0,0.1);
+      padding: 1.5rem  1rem;
+      text-align: center;
+    }
+  }
+  &[data-content*="_full"] {
+    background: none;
+    border-radius: unset;
+  }
+  &[data-content*="_no-gutter"] > [data-grid*="col"] {
+    border-radius: 0 !important;
+    > * {
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      background: none !important;
+    }
+  }
+}
+
+/**********************************/
+
+/* layout design modules*/
+//bg color
+.bg-mint {
+  background-color: #f0f8ff !important;
+}
+.bg-vanila {
+  background-color: #f5f5dc !important;
+}
+
+//marker
+[class*="marker"] {
+  position: relative;
+}
+@for $i from 1 through 9 {
+  .marker#{$i}:before {
+    align-items: center;
+    background: #ef6c43;
+    border-radius: 50%;
+    box-shadow: 1px 2px 3px rgba(0,0,0,.2);
+    color: #fff;
+    content: "#{$i}";
+    display: flex;
+    height: 32px; width: 32px;
+    justify-content: center;
+    position: absolute;
+    top: -1.2rem; left: .75rem;
+    text-align: center;
+  }
+}
+
+.button-dl {
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  color: #5f6a7d;
+  display: inline-block;
+  font-size: 12px;
+  height: 30px;
+  letter-spacing: .75px;
+  line-height: 28px;
+  padding: 0 1rem;
+  text-transform: uppercase;
+  vertical-align: top;
+  svg {
+    position: relative;
+    top: 3px; left: -5px;
+  }
+}
