@@ -7,7 +7,7 @@
   max-width: $wview;
   &[data-content*="_full"] {
     margin: auto -1rem; padding: 0;
-    max-width: initial;
+    max-width: inherit;
   }
   &[data-content*="row_asyme-c"] {
     justify-content: center;
